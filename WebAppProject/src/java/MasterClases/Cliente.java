@@ -12,16 +12,16 @@ package MasterClases;
 public class Cliente {
     protected TipoUsuario tipoCliente;
     protected int id;
-    protected String nombreDeUsuario;
+    protected int idUsuario;
 
     public int getIdCliente(){
         return id;
     }
     //public String getDato(){ return dato;}
 
-    public Cliente(String nombreDeUsuario, TipoUsuario cliente){
+    public Cliente(int idDeUsuario, TipoUsuario cliente){
         this.tipoCliente = cliente;
-        this.nombreDeUsuario = nombreDeUsuario;
+        this.idUsuario = idDeUsuario;
     }
     public Cliente(){
         //Todos los parámetros
@@ -35,8 +35,8 @@ public class Cliente {
         return this.tipoCliente;
     }
 
-    public String getNombreDeUsuario() {
-        return nombreDeUsuario;
+    public int getIdDeUsuario() {
+        return this.idUsuario;
     }
     
     

@@ -14,11 +14,16 @@ import java.util.logging.Logger;
 public class GlobalVariables {
     
     //Adriana datos
+    /*
     public static final String db = "jdbc:postgresql://localhost:5432/Project3DB";
     public static final String user = "postgres";
     public static final String password = "JeSuisFort56";
     public static Connection cn;
-    
+    */
+    public static final String db = "jdbc:postgresql://localhost:5432/Project3DB";
+    public static final String user = "postgres";
+    public static final String password = "JeSuisFort56";
+    public static Connection cn;
     
     public Connection connection(){
         try {
@@ -29,4 +34,5 @@ public class GlobalVariables {
         }
         return cn;
     }
+    
 }
