@@ -48,6 +48,10 @@ public class Producto {
         return this.precio;
     }
 
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+    
     public String toString(){ return "["+getNombreClase()+"]id="+idProducto+", producto="+producto+", precio="+precio; }
 
     public String getNombreClase(){ return this.getClass().getSimpleName(); }

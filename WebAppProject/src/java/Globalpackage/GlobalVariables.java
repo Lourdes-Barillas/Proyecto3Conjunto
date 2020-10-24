@@ -23,6 +23,7 @@ public class GlobalVariables {
     public static final String db = "jdbc:postgresql://localhost:5432/Project3DB";
     public static final String user = "postgres";
     public static final String password = "JeSuisFort56";
+    public static final String passwordEsau = "JeSuisFort56";
     public static Connection cn;
     
     public Connection connection(){

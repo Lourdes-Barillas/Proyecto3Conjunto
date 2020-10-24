@@ -27,7 +27,7 @@ public class Prueba {
         //main.insertCliente(2, TipoUsuario.Cliente_Individual);
         //main.insertUsuario("@Esau");
         //main.insertClienteInd("33587825654124", 1);
-        main.insertClienteEmpresarial("vorgas@yahoo.com", 3);
+        //main.insertClienteEmpresarial("vorgas@yahoo.com", 3);
     }
     
     
