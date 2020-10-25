@@ -13,7 +13,10 @@ import MasterClases.Children.ItemOrden;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -165,7 +168,7 @@ public class Create {
         values = " VALUES(?,?,?,?);";
         //Insertamos el cliente
         String consulta = insert 
-                + "public.\"Item\" (\"Item_Cantidad\",\"Item_ProductoId\",\"Item_Total\", \"Item_IdOrden\")" 
+                + "public.\"Item\" (\"Item_Cantidad\",\"Item_ProductoId\",\"Item_Total\", \"Item_OrdenId\")" 
                 + values;
         //la consulta será INSERT INTO PRODUCTOS VALUES('PROD_NOMBRE', 'PROD_PRECIO');
         try {
@@ -190,29 +193,34 @@ public class Create {
      * @param item 
      */
     public void insertOrden(Orden orden) {
-        values = " VALUES(?,?,?,?,?,?);";
         //Insertamos la orden
-        String consulta = insert 
-                + "public.\"Orden\" (\"Orden_ClienteId\",\"Orden_Fecha\","
-                + "\"Orden_PrecioDeEnvio\", \"Orden_TipoEnvio\", \"Orden_Estado\",\"Orden_DiasEnvio\")" 
-                + values;
+        
         //la consulta será INSERT INTO PRODUCTOS VALUES
         //(Orden_ClienteId, Orden_Fecha, Orden_PrecioDeEnvio, Orden_TipoEnvio, Orden_Estado, Orden_DiasEnvio);
         try {
             //1. Crear la conexión
             Connection miConexion = globalvariables.connection();
             
-            PreparedStatement miStatement = miConexion.prepareStatement(consulta);
-            miStatement.setInt(1, orden.getIdOrden());
-            miStatement.setInt(2, orden.getFecha());
-            miStatement.setDouble(3, orden.getPrecioDeEnvio());
-            miStatement.setString(4, orden.getTipoEnvio());
-            miStatement.setInt(5, orden.getEstado());
-            miStatement.setInt(6, orden.getdiasEnvio());
-            //Si fue insertado, busquemos el uno
-            insertado = miStatement.executeUpdate();
+            Statement miStatement = miConexion.createStatement();
+            values = " VALUES ("+orden.getIdCliente()+", ";//1
+            values = values + "'"+orden.getTipoEnvio()+"',";//2
+            values = values + ""+orden.getEstado()+ ", ";//3
+            values = values + ""+orden.getdiasEnvio()+ ", ";//4
+            values = values + "'" + orden.getFecha() + "', ";//5
+            values = values + "" + orden.getPrecioDeEnvio() + ");";//6
+            String consulta = "INSERT INTO " 
+                + "public.\"Orden\" "
+                    + "(\"Orden_ClienteId\","//1
+                    + "\"Orden_TipoEnvio\", "//2
+                    + "\"Orden_Estado\", "//3
+                    + "\"Orden_DiasEnvio\", "//4
+                    + "\"Orden_Fecha\", "//5
+                    + "\"Orden_PrecioDeEnvio\") " //6
+                + values;
+            boolean insertado = miStatement.execute(consulta);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
+            Logger.getLogger(GlobalVariables.class.getName()).log(Level.SEVERE, null, e);
             JOptionPane.showMessageDialog(null, "Error al insertar " + e);
         }
     }
