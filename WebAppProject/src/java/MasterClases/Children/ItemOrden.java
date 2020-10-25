@@ -13,13 +13,14 @@ import MasterClases.Producto;
  * @author Adriana P
  */
 public class ItemOrden {
-    private static Orden orden = new Orden();//id de la orden
+    private Orden orden;//id de la orden
     private int cantidad;
     private double total;
     private Producto producto;
     
     public ItemOrden(int id,int cantidad,int pIdProducto, double total){
         this.producto = new Producto();
+        this.orden = new Orden();
         this.orden.setId(id);
         this.cantidad=cantidad;
         this.producto.setIdProducto(pIdProducto);
