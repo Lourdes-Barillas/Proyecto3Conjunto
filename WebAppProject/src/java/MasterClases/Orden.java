@@ -5,6 +5,7 @@
  */
 package MasterClases;
 
+import Globalpackage.GlobalVariables;
 import java.sql.Date;
 
 /**
@@ -17,15 +18,19 @@ public class Orden {
     
     private int id;
     private Orden orden;
-    private Date fecha;
+    private static Cliente cliente  = new Cliente();;
+    private String fecha;
     private Double precioEnvio;
     private String tipoEnvio;
     private int estado;
     private int diasEnvio;
     
-    public Orden(int _idOrden, Double _precioEnvio, String _tipoEnvio, int _estado, int _dias){
-        orden = new Orden();
-        orden.setId(_idOrden);
+    public Orden(int _idCliente, Double _precioEnvio, String _tipoEnvio, int _estado, int _dias){
+        this.cliente.setId(_idCliente);
+        this.precioEnvio = _precioEnvio;
+        this.tipoEnvio = _tipoEnvio;
+        this.estado = _estado;
+        this.diasEnvio = _dias;
         //fecha = new java.sql.Date(id, id, id)
     }
     public Orden(){
@@ -40,12 +45,12 @@ public class Orden {
         return id;
     }
     
-    public int getIdOrden() {
-        return this.orden.getId();
+    public int getIdCliente() {
+        return this.cliente.getIdCliente();
     }
 
-    public int getFecha() {
-        return 0;
+    public String getFecha() {
+        return this.fecha = GlobalVariables.fecha;
     }
 
     public double getPrecioDeEnvio() {

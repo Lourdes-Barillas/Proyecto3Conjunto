@@ -4,6 +4,10 @@ package Globalpackage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +28,7 @@ public class GlobalVariables {
     public static final String user = "postgres";
     public static final String password = "JeSuisFort56";
     public static final String passwordEsau = "JeSuisFort56";
+    public static String fecha;
     public static Connection cn;
     
     public Connection connection(){
@@ -34,6 +39,17 @@ public class GlobalVariables {
             System.out.println("Error al conectarse a la base de datos");
         }
         return cn;
+    }
+    
+    public GlobalVariables(){
+        connection();
+        fecha();
+    }
+    
+    private String fecha(){
+        Date fecha = new Date();
+        DateFormat formatofecha = new SimpleDateFormat("yyyy/MM/dd");
+        return this.fecha = formatofecha.format(fecha);
     }
     
 }

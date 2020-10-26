@@ -14,6 +14,9 @@ public class Cliente {
     protected int id;
     protected int idUsuario;
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public int getIdCliente(){
         return id;
     }

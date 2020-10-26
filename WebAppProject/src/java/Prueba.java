@@ -1,10 +1,17 @@
 
 import CRUD.Create;
+import Globalpackage.GlobalVariables;
 import MasterClases.Children.Empresarial;
 import MasterClases.Children.Individual;
+import MasterClases.Children.ItemOrden;
 import MasterClases.Cliente;
+import MasterClases.Orden;
 import MasterClases.Producto;
 import MasterClases.TipoUsuario;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,6 +35,10 @@ public class Prueba {
         //main.insertUsuario("@Esau");
         //main.insertClienteInd("33587825654124", 1);
         //main.insertClienteEmpresarial("vorgas@yahoo.com", 3);
+        //GlobalVariables gg = new GlobalVariables();
+        //System.out.println(gg.fecha);
+        //main.insertOrden();
+        main.insertItemOrden();
     }
     
     
@@ -70,5 +81,24 @@ public class Prueba {
         Empresarial cliente = new Empresarial(contacto, idCliente);
         Create create = new Create();
         create.insertClienteEmpresarial(cliente);
+    }
+    
+    public void insertOrden(){
+        int _idCliente; Double _precioEnvio; String _tipoEnvio; int _estado; int _dias;
+        _idCliente =1;
+        _precioEnvio=2.30;
+        _tipoEnvio= Orden.envioBodega;
+        _estado = 1;
+        _dias=2;
+        Orden orden = new Orden(_idCliente, _precioEnvio, _tipoEnvio, _estado, _dias);
+        Create create = new Create();
+        create.insertOrden(orden);
+    }
+    
+    public void insertItemOrden(){
+        int id=3;int cantidad=2;int pIdProducto=1; double total=20.3;
+        ItemOrden itemorden = new ItemOrden(id, cantidad, pIdProducto, total);
+        Create create = new Create();
+        create.insertItem(itemorden);
     }
 }
